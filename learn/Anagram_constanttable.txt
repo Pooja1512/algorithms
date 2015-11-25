@@ -1,0 +1,75 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/* 
+s is original string and t is the new string
+We have an array maintaining the count of all the characters in an array.
+
+Here we have a constant size array in which we increment the count when we encounter a character in s.
+
+We decrement the count whenever we encounter a character in t.
+If the count of t drops below s then we know there are extra characters in t. 
+
+Complexity
+As there is an array. Time complexity is O(n) to access the array.
+
+Space complexity is O(1) for the space as it is constant sized table but requires fixed memory.
+
+
+
+*/
+
+package anagram;
+import java.io.*;
+import java.util.*;
+
+/**
+ *
+ * @author ppurush
+ */
+public class Anagram {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static boolean isAnagram(String s, String t)
+    {
+        if(s.length() != t.length())
+            return false;
+        else
+        {     
+        int[] table = new int[26];
+        
+        for(char i:s.toCharArray())// need array fr this iteration
+        {
+            table[i-'a']++;
+        }
+        
+        for(char j:t.toCharArray())
+        {
+            table[j-'a']--;
+            if(table[j-'a']< 0)
+                return false;
+        }
+       
+        return true;
+        }
+        
+    }
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the first string");
+        String str1 = sc.nextLine();
+        System.out.println("Enter the second string");
+        String str2 = sc.nextLine();
+        boolean val = isAnagram(str1, str2);
+        if(val)
+        System.out.println("Anagram");
+        else
+            System.out.println("Not an anagram");
+    }
+    
+}
