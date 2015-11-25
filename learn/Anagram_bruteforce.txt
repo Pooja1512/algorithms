@@ -1,0 +1,46 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package anagram;
+import java.io.*;
+import java.util.*;
+
+/**
+ *
+ * @author ppurush
+ */
+public class Anagram {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static boolean isAnagram(String s, String t)
+    {
+        if(s.length() != t.length())
+            return false;
+        else
+        {
+          char str1[]= s.toCharArray();  
+          char str2[]= t.toCharArray();
+          Arrays.sort(str1);
+          Arrays.sort(str2);
+          return Arrays.equals(str1, str2);
+        }
+    }
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the first string");
+        String str1 = sc.nextLine();
+        System.out.println("Enter the second string");
+        String str2 = sc.nextLine();
+        boolean val = isAnagram(str1, str2);
+        if(val)
+        System.out.println("Anagram");
+        else
+            System.out.println("Not an anagram");
+    }
+    
+}
