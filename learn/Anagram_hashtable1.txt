@@ -1,0 +1,66 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package anagram;
+import java.io.*;
+import java.util.*;
+
+/**
+ *
+ * @author ppurush
+ */
+/* Notes
+We are maintaining one table to check if the occurrence of characters in both the strings. 
+We have an array that stores the counts for 26 
+alphabets. 
+We increment the count for one string and decrement it for another string.
+We then check if all values are zero in the table and if not we return false.
+
+Time and space complexity
+As we have an array, time taken to access an array is O(n). 
+
+We are using extra space but the size remains constant. So, the space complexity is O(1). 
+
+public class Anagram {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static boolean isAnagram(String s, String t)
+    {
+        int[] table = new int[26];
+        
+        if(s.length() != t.length())
+            return false;
+        else
+        {
+          for(int i=0; i<s.length(); i++)
+          {
+              table[s.charAt(i)-'a']++;
+              table[t.charAt(i)-'a']--;
+          }
+          for(int count:table)
+              if(count != 0)
+          {
+              return false;
+          }
+          return true;
+        }
+    }
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the first string");
+        String str1 = sc.nextLine();
+        System.out.println("Enter the second string");
+        String str2 = sc.nextLine();
+        boolean val = isAnagram(str1, str2);
+        if(val)
+        System.out.println("Anagram");
+        else
+            System.out.println("Not an anagram");
+    }
+    
+}
